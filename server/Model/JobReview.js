@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 
 const applicationReviewSchema = new Schema({
   employer: {
-    type: Schema.Types.ObjectId,
+    type: String,
     ref: 'Employer',
     required: true
   },
   jobApplication: {
-    type: Schema.Types.ObjectId,
+    type: String,
     ref: 'JobApplication',
     required: true
   },

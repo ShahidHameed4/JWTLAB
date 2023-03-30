@@ -15,7 +15,7 @@ const jobPostingSchema = new Schema({
     required: true
   },
   postedBy: {
-    type: Schema.Types.ObjectId,
+    type: String,
     ref: 'Employer',
     required: true
   },

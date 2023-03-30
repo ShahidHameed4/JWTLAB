@@ -7,19 +7,20 @@ import {
     deleteJob
 } from '../Controller/JobModel.js';
 const router = express.Router();
+import  protect  from '../Middleware/Middleware.js';
 // CREATE job
-router.post('/jobs', createJob);
+router.post('/jobs',protect, createJob);
 
 // READ all jobs
-router.get('/jobs', getJobs);
+router.get('/jobs',protect, getJobs);
 
 // READ single job by ID
-router.get('/jobs/:id', getJobById);
+router.get('/jobs/:id',protect, getJobById);
 
 // UPDATE job
-router.put('/jobs/:id', updateJob);
+router.put('/jobs/:id',protect, updateJob);
 
 // DELETE job
-router.delete('/jobs/:id', deleteJob);
+router.delete('/jobs/:id',protect, deleteJob);
 
 export default router;
