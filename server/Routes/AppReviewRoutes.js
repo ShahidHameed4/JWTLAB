@@ -1,5 +1,5 @@
 import express from 'express';
-import { createApplicationReview, getApplicationReviewById, getApplicationReviews, updateApplicationReview } from '../controllers/applicationReviewController.js';
+import { createApplicationReview, getApplicationReviewById, getApplicationReviews, updateApplicationReview } from '../Controller/AppReview.js';
 const router = express.Router();
 
 

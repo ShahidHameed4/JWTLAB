@@ -1,4 +1,4 @@
-import ApplicationReview from '../Models/ApplicationReview.js';
+import ApplicationReview from '../Model/JobReview.js';
 
 // Create a new application review
 async function createApplicationReview(employerId, jobApplicationId, reviewMessage) {
@@ -60,7 +60,7 @@ async function deleteApplicationReview(reviewId) {
   }
 }
 
-export default {
+export  {
 
     createApplicationReview,
     getApplicationReviews,

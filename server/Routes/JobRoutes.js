@@ -5,9 +5,8 @@ import {
     getJobById,
     updateJob,
     deleteJob
-} from '../Controllers/JobController.js';
-
-
+} from '../Controller/JobModel.js';
+const router = express.Router();
 // CREATE job
 router.post('/jobs', createJob);
 

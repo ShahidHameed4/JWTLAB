@@ -1,4 +1,4 @@
-import JobApplication from '../models/JobApplication.js';
+import JobApplication from '../Model/JobApplication.js';
 
 const createJobApplication = async (applicant, jobPosting, resumeUrl, coverMessage) => {
     try {
@@ -54,7 +54,7 @@ const createJobApplication = async (applicant, jobPosting, resumeUrl, coverMessa
     }
   };
  
-    export default {
+    export  {
         createJobApplication,
         getJobApplications,
         getJobApplicationById,

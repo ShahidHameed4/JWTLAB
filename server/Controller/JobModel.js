@@ -1,7 +1,7 @@
-import Job from '../Models/JobModel.js';
+import Job from '../Model/JobModel.js';
 
 // CREATE job
-exports.createJob = async (req, res) => {
+const createJob = async (req, res) => {
   try {
     const job = new Job(req.body);
     await job.save();
@@ -12,7 +12,7 @@ exports.createJob = async (req, res) => {
 };
 
 // READ all jobs
-exports.getJobs = async (req, res) => {
+const getJobs = async (req, res) => {
   try {
     const jobs = await Job.find();
     res.status(200).json(jobs);
@@ -53,7 +53,7 @@ const deleteJob = async (req, res) => {
   }
 };
 
-export default {
+export  {
     createJob,
     getJobs,
     getJobById,
