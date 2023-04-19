@@ -1,4 +1,5 @@
 import User from '../Model/UserInfo.js'
+
 import asyncHandler from 'express-async-handler'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
@@ -39,6 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
     city:req.body.city
 
   })
+  user.save();
 
   if (user) {
     res.status(201).json({
@@ -76,8 +78,14 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
+
   res.status(200).json(req.user)
 })
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({})
+  res.status(200).json(users)
+})
+
 
 // Generate JWT
 const generateToken = (id) => {
@@ -114,5 +122,6 @@ export  {
   registerUser,
   loginUser,
   getMe,
-  profile
+  profile,
+  getAllUsers
 }

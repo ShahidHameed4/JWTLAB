@@ -2,13 +2,13 @@
 import express from 'express'
 import { registerUser,
     loginUser,
-    getMe,profile} from '../Controller/UserController.js'
+    getMe,profile,getAllUsers} from '../Controller/UserController.js'
 
 import protect from "../Middleware/Middleware.js"
 const router = express.Router()
 
 router.post('/create', registerUser)
-router.get('/get/',protect, getMe )
+router.get('/get/',protect, getAllUsers )
 router.post('/login', loginUser )
 router.get('/profile', profile )
 

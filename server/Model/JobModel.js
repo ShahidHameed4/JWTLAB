@@ -16,7 +16,6 @@ const jobPostingSchema = new Schema({
   },
   postedBy: {
     type: String,
-    ref: 'Employer',
     required: true
   },
   datePosted: {
