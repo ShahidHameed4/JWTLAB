@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleaddjob.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Job</h1>
+    <form>
+      <label for="jobTitle">Job Title:</label>
+      <input type="text" id="jobTitle" name="jobTitle" />
+
+      <label for="jobDescription">Job Description:</label>
+      <textarea id="jobDescription" name="jobDescription"></textarea>
+
+      <label for="jobTags">Job Tags:</label>
+      <input type="text" id="jobTags" name="jobTags" />
+
+      <button id="submitBtn" type="submit">Submit</button>
+    </form>
+
+      <script>
+         const form = document.querySelector('form');
+      const submitBtn = document.querySelector('#submitBtn');
+
+      submitBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const jobTitle = document.querySelector('#jobTitle').value;
+        const jobDescription = document.querySelector('#jobDescription').value;
+        const jobTags = document.querySelector('#jobTags').value;
+
+        const token = localStorage.getItem('token');
+
+        const data = {
+          jobTitle,
+          jobDescription,
+          jobTags,
+        };
+
+        fetch('http://localhost:3001/api/job/jobs/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            alert('Job created successfully!');
+            form.reset();
+          })
+          .catch((error) => console.error(error));
+      });
+      </script>
+</body>
+</html>
+  

@@ -17,14 +17,35 @@ const createJob = asyncHandler( async (req, res) => {
 });
 
 // READ all jobs
-const getJobs = asyncHandler( async (req, res) => {
+// const getJobs = asyncHandler( async (req, res) => {
+//   try {
+//     const jobs = await Job.find();
+//     jobs.forEach(async (job) => {
+//       job.postedBy = await UserInfo.findById(job.postedBy).name;
+//     });
+
+//     res.status(200).json(jobs);
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// });
+
+
+
+const getJobs = asyncHandler(async (req, res) => {
   try {
     const jobs = await Job.find();
-    jobs.forEach(async (job) => {
-      job.postedBy = await UserInfo.findById(job.postedBy).name;
+    const jobPromises = jobs.map(async (job) => {
+      const userInfo = await UserInfo.findById(job.postedBy);
+      if (userInfo) {
+        job.postedBy = userInfo.name;
+      } else {
+        job.postedBy = "Unknown User";
+      }
+      return job;
     });
-
-    res.status(200).json(jobs);
+    const jobsWithUserNames = await Promise.all(jobPromises);
+    res.status(200).json(jobsWithUserNames);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
